@@ -1,19 +1,19 @@
-# 🚀 CryptoX – Cryptocurrency Portfolio Dashboard
+#  CryptoX – Cryptocurrency Portfolio Dashboard
 
 CryptoX is a responsive web application that allows users to **track their cryptocurrency portfolio, manage trades (buy/sell), and monitor live market data**. It integrates with the [CoinGecko API](https://www.coingecko.com/en/api) to fetch real-time crypto prices and updates.
 
 ---
 
-## ✨ Features
+##  Features
 
-* 📊 **Dashboard Overview**
+*  **Dashboard Overview**
 
   * Portfolio Value (calculated live from owned coins)
   * 24h Change (based on portfolio coins’ performance)
   * Owned Coins count
   * Available Balance (updated after each trade)
 
-* 💹 **Portfolio Management**
+*  **Portfolio Management**
 
   * Buy coins with simulated balance
   * Sell coins and restore balance
@@ -25,7 +25,7 @@ CryptoX is a responsive web application that allows users to **track their crypt
     * 24h price change
     * Real-time price updates
 
-* 🔐 **Multi-User Support**
+*  **Multi-User Support**
 
   * Portfolios and balances are stored uniquely per user (using `localStorage` keys tied to the logged-in user’s email/ID).
   * Different accounts on the same device will not share the same data.
@@ -35,7 +35,7 @@ CryptoX is a responsive web application that allows users to **track their crypt
   * SweetAlert2 popups for errors and confirmations
   * Fallback messages when CoinGecko API fetch fails
 
-* 🎨 **UI/UX Enhancements**
+* **UI/UX Enhancements**
 
   * Clean Bootstrap 5 design
   * SweetAlert2 modals for actions (buy, sell, remove, errors)
@@ -43,7 +43,7 @@ CryptoX is a responsive web application that allows users to **track their crypt
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * **Frontend**: HTML5, CSS3, Bootstrap 5
 * **JavaScript**: Vanilla JS (ES6+), SweetAlert2
@@ -52,12 +52,12 @@ CryptoX is a responsive web application that allows users to **track their crypt
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 CryptoX/
 │── index.html        # Main entry point
-│── /css              # Custom styles (optional)
+│── /css              # Custom styles 
 │── /js               # Scripts (portfolio logic, API handling)
 │── /assets           # Images, icons, etc.
 │── README.md         # Project documentation
@@ -65,12 +65,12 @@ CryptoX/
 
 ---
 
-## ⚙️ Setup & Usage
+##  Setup & Usage
 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/cryptox.git
+   git clone https://github.com/Fineclem/clement_crypto
    cd cryptox
    ```
 
@@ -95,7 +95,7 @@ CryptoX/
 
 ---
 
-## 🚨 Notes
+##  Notes
 
 * All balances and portfolios are **simulated** and stored in `localStorage`.
 * No real money is involved.
@@ -103,7 +103,7 @@ CryptoX/
 
 ---
 
-## 📌 Roadmap
+##  Roadmap
 
 * [ ] Add real authentication system
 * [ ] Integrate with live trading APIs (Binance, Coinbase, etc.)
@@ -112,14 +112,14 @@ CryptoX/
 
 ---
 
-## 📜 License
+##  License
 
 This project is licensed under the MIT License.
 You are free to use, modify, and distribute this project for personal and commercial use.
 
 ---
 
-## 🙌 Acknowledgements
+##  Acknowledgements
 
 * [CoinGecko API](https://www.coingecko.com/en/api) for real-time crypto data
 * [Bootstrap 5](https://getbootstrap.com/) for responsive UI
