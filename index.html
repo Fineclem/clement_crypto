@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CryptoX - Modern Crypto Platform</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="/asset/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <style>
+       
+      
+
+  </style>
+</head>
+<body>
+        <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand text-danger fw-bold" href="#">
+        Crypto<span class="text-success">X</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#howitworks">How It Works</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" data-bs-toggle="dropdown">
+              Resources
+            </a>
+            <ul class="dropdown-menu">
+              
+              <li><a class="dropdown-item" href="pages/education.html">Education</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="pages/faq.html">FAQ</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <!-- Search + Action -->
+        <form class="d-none d-lg-flex me-3" role="search" autocomplete="off">
+          <!-- <div class="input-group">
+            <a href="#" class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></a>
+            <input type="search" class="form-control border-start-0" placeholder="Search coins, news..." />
+          </div> -->
+        </form>
+        <div class="dropdown me-2">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle me-1"></i> Account
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal">Login</a></li>
+             <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal1">Register</a></li>
+           
+            <!-- <li><a class="dropdown-item" href="#">My Portfolio</a></li> -->
+          </ul>
+        </div>
+           <!-- <a href="market.html" class="btn btn-success d-none d-lg-inline-block"><i class="bi bi-wallet2 me-1"></i> Trade Now</a> -->
+        </div>
+      </div>
+    </nav>
+
+      <!-- Coin Ticker Carousel -->
+<div id="coinTicker" class="bg-dark text-light p-3" style="min-height: 48px; overflow: hidden;">
+  <div class="container-fluid">
+    <div id="coinTickerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3200">
+      <div class="carousel-inner flex-nowrap" style="min-height: 24px;">
+        <div class="carousel-item active">
+          <span class="fw-bold text-warning me-2"><i class="bi bi-currency-bitcoin"></i> BTC</span>
+          <span id="carousel-btc-price">$--loading</span>
+          <span id="carousel-btc-change" class="ms-2"></span>
+        </div>
+        <div class="carousel-item">
+          <span class="fw-bold text-info me-2"><i class="bi bi-currency-ethereum"></i> ETH</span>
+          <span id="carousel-eth-price">$--loading</span>
+          <span id="carousel-eth-change" class="ms-2"></span>
+        </div>
+        <div class="carousel-item">
+          <span class="fw-bold text-success me-2"><i class="bi bi-currency-dollar"></i> ADA</span>
+          <span id="carousel-ada-price">$--loading</span>
+          <span id="carousel-ada-change" class="ms-2"></span>
+        </div>
+        <div class="carousel-item">
+          <span class="fw-bold text-primary me-2">XRP</span>
+          <span id="carousel-xrp-price">$--loading</span>
+          <span id="carousel-xrp-change" class="ms-2"></span>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <section id="blog" class="container py-5 d-none">
+  <h2 class="section-heading mb-4">Latest Crypto Blog Articles</h2>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+    <!-- Blog Card 1 -->
+    <article class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="/asset/img/blog1.jpg" class="card-img-top" alt="Blockchain Technology Innovations">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Blockchain Technology Innovations Impacting DeFi</h5>
+          <p class="card-text flex-grow-1 text-muted">Explore the latest breakthroughs in blockchain tech that are reshaping decentralized finance and empowering new usage.</p>
+          <div class="mt-3 d-flex justify-content-between align-items-center">
+            <small class="text-muted">By <strong>Jane Crypto</strong> | July 15, 2025</small>
+            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Blog Card 2 -->
+    <article class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="/asset/img/blog2.jpg" class="card-img-top" alt="Crypto Market Trends 2025">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Top Crypto Market Trends to Watch in 2025</h5>
+          <p class="card-text flex-grow-1 text-muted">Stay ahead with insights on potential market movers, emerging tokens, and regulatory landscapes affecting crypto in 2025.</p>
+          <div class="mt-3 d-flex justify-content-between align-items-center">
+            <small class="text-muted">By <strong>John Block</strong> | July 20, 2025</small>
+            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Blog Card 3 -->
+    <article class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="/asset/img/blog3.jpg" class="card-img-top" alt="NFTs and Digital Art">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">NFTs and the Evolution of Digital Art Marketplace</h5>
+          <p class="card-text flex-grow-1 text-muted">Understanding the role NFTs play in creating new opportunities for artists and collectors in the digital economy.</p>
+          <div class="mt-3 d-flex justify-content-between align-items-center">
+            <small class="text-muted">By <strong>Emily Token</strong> | July 25, 2025</small>
+            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+    <!-- Hero Section with Background Video -->
+    <section id="home" class="hero-section">
+        <video class="hero-video" autoplay loop muted playsinline preload="auto">
+            <source src="/asset/video/7579667-uhd_2160_4096_25fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="display-5 fw-bold text-white mb-3">Welcome to <span class="text-danger">Crypto<span class="text-success">X</span></span></h1>
+            <p class="lead text-white-75 mb-4">Your one-stop solution for all crypto needs. Trade, explore, and learn about the future of finance.</p>
+            <a href="#market" class="btn btn-success btn-lg me-3">Explore Markets</a>
+            <a href="#howitworks" class="btn btn-outline-light btn-lg">How It Works</a>
+        </div>
+    </section>
+
+  <!-- Market Section -->
+  <section id="market" class="container py-5">
+    <h2 class="section-heading">Live Crypto Markets</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="market-list">
+      
+       <!-- Bitcoin card -->
+      <div class="col">
+        <div class="market-card">
+          <i class="bi bi-currency-bitcoin display-6 text-warning mb-2"></i>
+          <div class="fw-bold">Bitcoin (BTC)</div>
+          <div class="price" id="price-btc">$--</div>
+          <div class="change positive" id="change-btc"><i class="bi bi-caret-up-fill"></i> +2.5%</div>
+          <small class="text-muted">24h Change</small>
+        </div>
+      </div>
+
+      
+      
+      <!-- Cardano card -->
+      <div class="col">
+        <div class="market-card">
+          <i class="bi bi-currency-dollar display-6 text-success mb-2"></i>
+          <div class="fw-bold">Cardano (ADA)</div>
+          <div class="price" id="price-ada">$--</div>
+          <div class="change positive" id="change-ada"><i class="bi bi-caret-up-fill"></i> +1.2%</div>
+          <small class="text-muted">24h Change</small>
+        </div>
+      </div>
+      
+      <!-- <div class="col">
+        <div class="market-card">
+          <i class="bi bi-currency-pi display-6 text-warning mb-2"></i>
+          <div class="fw-bold">Pi Coin (PI)</div>
+          <div class="price" id="price-pi">$--</div>
+          <div class="change" id="change-pi"></div>
+          <small class="text-muted">24h Change</small>
+        </div>
+      </div> -->
+      
+      <!-- Binance card -->
+     <div class="col">
+  <div class="market-card">
+    <i class="bi bi-currency-bitcoin display-6 text-warning-emphasis mb-2"></i>
+    <div class="fw-bold">Binance Coin (BNB)</div>
+    <div class="price" id="price-bnb">$--</div>
+    <div class="change positive" id="change-bnb">
+      <i class="bi bi-caret-down-fill"></i> -0.5%
+    </div>
+    <small class="text-muted">24h Change</small>
+  </div>
+</div>
+
+      <div class="col">
+        <div class="market-card">
+          <i class="bi bi-x-circle text-primary display-6 mb-2"></i>
+          <div class="fw-bold">XRP (XRP)</div>
+          <div class="price" id="price-xrp">$--</div>
+          <div class="change negative" id="change-xrp"><i class="bi bi-caret-down-fill"></i> -0.5%</div>
+          <small class="text-muted">24h Change</small>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="text-center mt-4">
+      <a href="../crypto project/pages/market.html" class="btn btn-outline-primary btn-lg">See All Coins</a>
+    </div> -->
+  </section>
+
+
+  <!-- HOW IT WORKS -->
+  <section id="howitworks" class="container py-5">
+    <h2 class="section-heading">How It Works</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card p-4 text-center h-100 border-0 shadow-sm">
+          <i class="bi bi-person-plus-fill step-icon mb-2 text-primary"></i>
+          <h5 class="fw-bold mb-2">1. Sign Up</h5>
+          <p class="text-muted">Create your free account to start trading on CryptoX.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card p-4 text-center h-100 border-0 shadow-sm">
+          <i class="bi bi-cash-coin step-icon mb-2 text-success"></i>
+          <h5 class="fw-bold mb-2">2. Fund Your Wallet</h5>
+          <p class="text-muted">Securely deposit funds via bank transfer or crypto.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card p-4 text-center h-100 border-0 shadow-sm">
+          <i class="bi bi-graph-up-arrow step-icon mb-2 text-warning"></i>
+          <h5 class="fw-bold mb-2">3. Trade & Grow</h5>
+          <p class="text-muted">Buy and sell popular cryptocurrencies instantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US / FEATURES -->
+  <section id="features" class="container py-5">
+    <h2 class="section-heading">Why Choose CryptoX?</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <div class="card h-100 p-4">
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-graph-up text-success fs-2 me-3"></i>
+            <div><h5 class="mb-0 fw-bold">Live Prices & Trends</h5></div>
+          </div>
+          <div class="text-muted">Accurate, real-time prices from global markets and exchanges.</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 p-4">
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-shield-lock text-primary fs-2 me-3"></i>
+            <div><h5 class="mb-0 fw-bold">Secure Platform</h5></div>
+          </div>
+          <div class="text-muted">All transactions and assets are protected by robust security measures.</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 p-4">
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-people-fill text-info fs-2 me-3"></i>
+            <div><h5 class="mb-0 fw-bold">Active Community</h5></div>
+          </div>
+          <div class="text-muted">Learn from and connect with other crypto enthusiasts worldwide.</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 p-4">
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-book text-danger fs-2 me-3"></i>
+            <div><h5 class="mb-0 fw-bold">Crypto Academy</h5></div>
+          </div>
+          <div class="text-muted">Educational resources for both beginners and experienced traders.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Testimonials Section (Carousel) -->
+    <section class="container">
+        <h2 class="section-heading">What Our Users Say</h2>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="testimonial-card">
+                        <img src="/asset/img/download.jpeg" class="img-fluid" alt="User 1">
+                        <p class="lead"><i class="bi bi-quote"></i> CryptoX made trading so easy and accessible. I love the real-time market data!</p>
+                        <p class="fw-bold">- Jane Doe</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="testimonial-card">
+                        <img src="/asset/img/download (1).jpeg" class="img-fluid" alt="User 2">
+                        <p class="lead"><i class="bi bi-quote"></i> The educational resources on CryptoX are top-notch. Highly recommend for beginners.</p>
+                        <p class="fw-bold">- John Smith</p>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="testimonial-card">
+                        <img src="/asset/img/download (2).jpeg" class="img-fluid" alt="User 3">
+                        <p class="lead"><i class="bi bi-quote"></i> A secure and reliable platform for managing my crypto portfolio. The community is fantastic!</p>
+                        <p class="fw-bold">- Emily White</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+ <section id="newsletter" class="py-5 bg-dark text-white text-center">
+  <div class="container">
+    <h3 class="mb-3">Subscribe to Our Newsletter</h3>
+    <p class="mb-4">Get weekly updates on crypto trends, market news, and expert insights.</p>
+    <div class="col-md-7 col-lg-5 mx-auto">
+      <form id="newsletterForm" class="row justify-content-center">
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+          <input type="email" id="newsletterEmail" class="form-control" placeholder="Enter your email address" aria-label="Email" required>
+          <button class="btn btn-success" type="submit">Subscribe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Contact/Support Section -->
+    <section id="contact" class="contact-section container">
+        <h2 class="section-heading">Get in Touch</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p class="text-center text-muted mb-5">Have questions or need support? Fill out the form below or reach us through our channels.</p>
+               <form action="https://formspree.io/f/mqallawd" method="POST">
+  <div class="mb-3 get-touch">
+    <label for="name" class="form-label">Your Name</label>
+    <input type="text" class="form-control" name="name" id="name" required>
+  </div>
+
+  <div class="mb-3 get-touch">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" class="form-control" name="email" id="email" required>
+  </div>
+
+  <div class="mb-3 get-touch">
+    <label for="message" class="form-label">Message</label>
+    <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-success w-100">Send Message</button>
+</form>
+
+                <div class="row justify-content-center text-center mt-5">
+                    <div class="col-md-4 mb-3">
+                        <i class="bi bi-envelope-fill"></i>
+                        <p class="mb-0">info@cryptox.com</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <i class="bi bi-telephone-fill"></i>
+                        <p class="mb-0">+234 810 300 8900</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <p class="mb-0">123 Crypto Street, Port Harcourt, Nigeria</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-danger fw-bold">Crypto<span class="text-success">X</span></h5>
+                    <p>Your trusted platform for seamless cryptocurrency trading and insights.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#market">Markets</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#news">News & Blog</a></li>
+                        <li><a href="#education">Crypto Academy</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row bottom-bar text-center">
+                <div class="col-12">
+                    <p class="mb-0">&copy; 2024 CryptoX. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+  <!-- Login Modal -->
+
+      <div class="modal fade mt-5" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-4" style="background: transparent; backdrop-filter: blur(5px); border: 2px solid grey;">
+        <div class="modal-header">
+          <h5 class="modal-title text-white fw-semibold display-6">Login</h5>
+          <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form  id="loginform">
+            <input type="email" placeholder="Email" id="loginemail" name="email" class="form-control mb-2" >
+                        <input type="password" placeholder="Password" id="loginpassword" name="password" class="form-control mb-2" >
+                        <button class="btn btn-success  form-control mt-2" type="submit">Login</button>
+                         <a data-bs-toggle="modal" data-bs-target="#modal3" href="#">Forgot password?</a>
+                        <div class="text-center p-2">
+                        <span class="text-light">Don't have an account?</span> 
+                        <a class="text-warning"  href="#" data-bs-target="#modal1" data-bs-toggle="modal">Register</a>
+                        </div>
+                        <div id="loginLoader" class="loader d-none"></div>
+
+          </form>
+          <p id="emailResponse"></p>
+          </div>    
+      </div>
+    </div>
+  </div>
+  
+  <!-- REGISTER MODAL -->
+
+  <div class="modal fade mt-5" id="modal1"  tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-4" style="background: transparent; backdrop-filter: blur(5px);  border: 2px solid grey;">
+        <div class="modal-header">
+          <h5 class="modal-title text-white fw-semibold display-6">SignUp</h5>
+          <button class="btn-close bg-white" data-bs-dismiss="modal"  aria-label="close"></button>
+       </div>
+            <div class="modal-body">
+ <form id="registerForm">
+  <input type="text" class="form-control mb-3" name="name" id="userName" placeholder="username">
+  <!-- <input type="tel" class="form-control mb-3" name="phone" id="phone1" placeholder="Phone"> -->
+  <input type="email" class="form-control mb-3" name="email" id="email1" placeholder="Email">
+  <input type="password" class="form-control mb-3" name="password" id="password1" placeholder="Password">
+  <input type="password" class="form-control mb-3" name="password" id="password2" placeholder="Confirm Password">
+  <button class="btn btn-success w-100" type="submit">Register</button>
+ 
+  <div class="text-center">
+    <span class="text-light">Already have an account?</span> 
+    <a class="text-warning" href="#" data-bs-target="#modal" data-bs-toggle="modal">Login</a>
+  </div>
+  <div id="registerLoader" class="loader d-none"></div>
+</form>
+
+<div id="errorMsg"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Password Reset modal -->
+
+<div class="modal fade mt-5" id="modal3" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content p-4" style="background: transparent; backdrop-filter: blur(5px); border: 2px solid grey;">
+      <div class="modal-header">
+        <h5 class="modal-title text-white fw-semibold display-6">Reset Password</h5>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Reset Form -->
+        <form id="resetForm">
+          <div >
+            <input type="email" placeholder="Email" id="resetEmail"  class="form-control mb-2" required>
+          </div>
+          <div >
+            <input type="password" placeholder="New Password" id="resetPassword" class="form-control mb-2" required>
+            <input type="password" placeholder="Confirm Password" id="confirmPassword1" class="form-control mb-2" required>
+          </div>
+          <button class="btn btn-success form-control mt-2" type="submit">Confirm</button>
+          <div id="restLoader" class="loader d-none"></div>
+        </form>
+        <p id="passwordResponse"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/asset/js/register.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

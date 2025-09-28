@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<style>
+    .input-group input:focus {
+           box-shadow: none;
+           border: 1px solid rgba(0,0,0,0.07);
+           outline: none;
+       }
+
+</style>
+<body>
+           <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-danger fw-bold" href="#">
+        Crypto<span class="text-success">X</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="market.html">Markets</a></li>
+          <li class="nav-item"><a class="nav-link" href="#howitworks">How It Works</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" data-bs-toggle="dropdown">
+              Resources
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../pages/blog.html">Blog</a></li>
+              <li><a class="dropdown-item" href="../pages/education.html">Education</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <!-- Search + Action -->
+        <form class="d-none d-lg-flex me-3" role="search" autocomplete="off">
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
+            <input type="search" class="form-control border-start-0" placeholder="Search coins, news..." />
+          </div>
+        </form>
+        <div class="dropdown me-2">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle me-1"></i> Account
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="login.html">Login</a></li>
+            <li><a class="dropdown-item" href="signup.html">Register</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">My Portfolio</a></li>
+          </ul>
+        </div>
+        <a href="../pages/market.html" class="btn btn-success d-none d-lg-inline-block"><i class="bi bi-wallet2 me-1"></i> Trade Now</a>
+        </div>
+      </div>
+    </nav>
+
+
+   <section id="education" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">Crypto Education</h2>
+    <div id="education-content" class="row row-cols-1 row-cols-md-3 g-4">
+      <!-- Dynamic content will be injected here -->
+    </div>
+  </div>
+</section>
+ 
+      <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+ 
+<script>
+  // Sample dynamic data
+  const educationTopics = [
+    {
+      title: "How to Trade Crypto",
+      description: "Master the art of crypto trading with our step-by-step guides and expert tips.",
+      link: "#"
+    },
+    {
+      title: "Choosing the Right Cryptocurrency",
+      description: "Understand market trends and how to pick solid crypto projects for investment.",
+      link: "#"
+    },
+    {
+      title: "Crypto Wallets Explained",
+      description: "Learn the difference between hot and cold wallets and how to secure your assets.",
+      link: "#"
+    },
+    {
+      title: "Understanding Blockchain",
+      description: "Dive into the core technology powering crypto and why it matters.",
+      link: "#"
+    },
+    {
+      title: "Avoiding Crypto Scams",
+      description: "Spot red flags and protect your funds from common cryptocurrency frauds.",
+      link: "#"
+    },
+    {
+      title: "DeFi & Passive Income",
+      description: "Explore decentralized finance platforms and how to earn without trading.",
+      link: "#"
+    }
+  ];
+
+  const educationContainer = document.getElementById("education-content");
+
+  educationTopics.forEach(topic => {
+    const card = document.createElement("div");
+    card.className = "col";
+    card.innerHTML = `
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">${topic.title}</h5>
+          <p class="card-text">${topic.description}</p>
+          <a href="${topic.link}" class="btn btn-outline-primary btn-sm">Learn More</a>
+        </div>
+      </div>
+    `;
+    educationContainer.appendChild(card);
+  });
+</script>
+ 
+
+
+</body>
+</html>
