@@ -52,6 +52,8 @@ CryptoX is a responsive web application that allows users to **track their crypt
 5. Reads latest cryptocurrency news and insights.
 6. Updates profile, resets password, or logs out securely.
 
+ Login details: email:clem301@mail.com password: 111111
+
 
 ##  Tech Stack
 
