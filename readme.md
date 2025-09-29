@@ -41,6 +41,16 @@ CryptoX is a responsive web application that allows users to **track their crypt
   * SweetAlert2 modals for actions (buy, sell, remove, errors)
   * Responsive layout for mobile and desktop
 
+## Use Case
+
+**Fineclem, a crypto enthusiast, uses CryptoX to manage and trade his portfolio:**
+
+1. Logs in and views his dashboard with portfolio value, watchlist, and top coins.
+2. Browses the market section to see real-time coin prices and charts.
+3. Buys BTC using his balance; portfolio and balance update automatically.
+4. Monitors 24h profit/loss and portfolio growth.
+5. Reads latest cryptocurrency news and insights.
+6. Updates profile, resets password, or logs out securely.
 
 
 ##  Tech Stack
