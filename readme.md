@@ -25,7 +25,7 @@ CryptoX is a responsive web application that allows users to **track their crypt
     * 24h price change
     * Real-time price updates
 
-*  **Multi-User Support**
+*  Multi-User Support
 
   * Portfolios and balances are stored uniquely per user (using `localStorage` keys tied to the logged-in user’s email/ID).
   * Different accounts on the same device will not share the same data.
