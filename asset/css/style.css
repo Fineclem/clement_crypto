@@ -4,7 +4,7 @@
            outline: none;
        }
 
-     /* Hero Section Background Video */
+     /* Hero Section  */
         .hero-section {
             position: relative;
             height: 80vh; 
@@ -62,10 +62,18 @@
       border: 0;
       margin-bottom: 1rem;
     }
-    .market-card:hover { transform: translateY(-3px);}
-    .market-card .price { font-size: 1.6rem; font-weight: 700;}
-    .market-card .change.positive { color: #25a244; }
-    .market-card .change.negative { color: #e92c2c; }
+    .market-card:hover { 
+      transform: translateY(-3px);
+    }
+    .market-card .price { 
+      font-size: 1.6rem; font-weight: 700;
+    }
+    .market-card .change.positive {
+       color: #25a244; 
+      }
+    .market-card .change.negative {
+       color: #e92c2c;
+       }
     /* --- Testimonials --- */
     .testimonial-card {
       background: #f5f6fa;
@@ -114,7 +122,7 @@
     .footer .copyright { padding-top: 0.7rem; border-top: 1px solid #222;}
 
    .modal input:focus {
-  /* border-color: #494d49; */
+  
   box-shadow: 0 0 5px #4eaa50;
   outline: none;
   border-top: none;
@@ -199,7 +207,7 @@ box-shadow: 0 0 4px rgba(80, 175, 85, 0.6);
   width: 100%;
 }
 
-/* HTML: <div class="loader"></div> */
+
 .loader {
   width: fit-content;
   font-weight: bold;

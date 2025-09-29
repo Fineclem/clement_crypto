@@ -54,7 +54,7 @@ fetchMarketData();
 
 
 
-  // --- Trading (TradingView) ---
+  // --- Trading ---
  const coins = [
   "BTC","ETH","BNB","XRP","ADA","SOL","DOGE","DOT","MATIC","LTC",
   "SHIB","AVAX","TRX","UNI","LINK","XLM","ATOM","ETC","XMR","ALGO",
@@ -101,7 +101,7 @@ fetchMarketData();
 
 
 
-// --- Portfolio storage per user ---
+// --- Portfolio  ---
 
 const coinSelector = document.getElementById("coinSelector");
 const buyBtn = document.getElementById("buyBtn");
@@ -152,7 +152,7 @@ function savePortfolio(portfolio) {
   localStorage.setItem(`portfolio_${user.id}`, JSON.stringify(portfolio));
 }
 
-// --- Balance storage per user ---
+// --- Balance function---
 function getBalance() {
   const user = getCurrentUser();
   if (!user) return 0;
@@ -170,7 +170,7 @@ function updateBalanceUI() {
   document.getElementById("dash-balance").textContent = `$${balance.toFixed(2)}`;
 }
 
-// --- portfolio with live prices ---
+// --- portfolio coin prices ---
 
 function renderPortfolio() {
   const portfolio = getPortfolio();
@@ -457,7 +457,7 @@ setInterval(renderPortfolio, 60000);
 });
 
 
-  // --- Profile Handling ---
+  // ---user Profile Handling ---
   const userNameEl = document.getElementById("userName");
   const userAvatarEl = document.getElementById("userAvatar");
 
@@ -470,7 +470,7 @@ setInterval(renderPortfolio, 60000);
     }
   }
 
-  // Log Out
+  // Logging Out
   const logoutBtn = document.getElementById("logoutBtn");
 
 logoutBtn.addEventListener("click", () => {
@@ -569,11 +569,11 @@ searchInput.addEventListener("input", function () {
   const query = this.value.toLowerCase().trim();
 
   // Show Market section
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
   marketSection.classList.add("active");
 
-  // Update sidebar active state
-  document.querySelectorAll(".sidebar .nav-link").forEach(l => l.classList.remove("active"));
+
+  document.querySelectorAll(".sidebar .nav-link").forEach(nav => nav.classList.remove("active"));
   document.querySelector('[data-section="market"]').classList.add("active");
 
   // Run filter
@@ -671,7 +671,7 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
     avatar: loggedInUser?.avatar || "/asset/img/8.jpg"
   };
 
-  // Save back to localStorage
+ 
   localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
 
   
@@ -682,7 +682,13 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
   const modal = bootstrap.Modal.getInstance(document.getElementById("profileModal"));
   modal.hide();
 
-  console.log("Updated User saved to localStorage:", updatedUser);
+  Swal.fire({
+  icon: "success",
+  title: "Profile Updated",
+  text: "Your updated details have been saved successfully!",
+  timer: 2500
+});
+
 });
 
 // Load user on page load

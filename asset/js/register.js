@@ -108,9 +108,7 @@ loginForm.addEventListener("submit", (e) => {
     .then(({ ok, data }) => {
       if (!ok) throw new Error(data.message || JSON.stringify(data));
        
-      // Save user info for dashboard
-      // localStorage.setItem("loggedInUser", JSON.stringify(data.user));
-      // After login success
+   
 localStorage.setItem("authToken", data.token);
 localStorage.setItem("loggedInUser", JSON.stringify(data.user));
 
@@ -166,7 +164,7 @@ resetForm.addEventListener("submit", async (e) => {
   const confirmPassword = document.getElementById("confirmPassword1").value.trim();
   const resetEmail = document.getElementById("resetEmail").value.trim();
 
-  // ✅ Password validation
+  //  Password validation
   if (newPassword.length < 6) {
     Swal.fire({
       icon: "error",
@@ -188,7 +186,7 @@ resetForm.addEventListener("submit", async (e) => {
   }
 
   try {
-    // ✅ Call API endpoint for reset password
+    //   reset password
     const response = await fetch("https://testapi-touo.onrender.com/api/auth/reset-password", {
       method: "POST",
       headers: {
@@ -212,7 +210,7 @@ resetForm.addEventListener("submit", async (e) => {
       return;
     }
 
-    // ✅ Success
+    //  Success
     Swal.fire({
       icon: "success",
       title: "Password Updated",

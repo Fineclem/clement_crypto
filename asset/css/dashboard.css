@@ -129,7 +129,7 @@
 }
 
 
-/* Web3 Animated Background */
+
 
  #particles-js {
   position: fixed;
@@ -196,15 +196,8 @@
 
 
 
-/* #dashboard-market td {
-  white-space: nowrap; 
-  max-width: 120px;    
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
 
 
-/* Dropdown item hover effect */
 .dropdown-item {
   position: relative;
   color: #f8f9fa; 
