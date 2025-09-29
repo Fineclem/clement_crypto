@@ -6,6 +6,7 @@ if(!localStorage.getItem("loggedInUser")){
 // ================ Market Fetch ===========
   const userName = document.getElementById("userName");
   const userAvatar = document.getElementById("userAvatar");
+  const loader1 = document.getElementById("loader1");
 
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   if(loggedInUser){
@@ -41,9 +42,9 @@ async function fetchMarketData() {
           </div>
         </div>
       </div>`;
+      loader1.classList.add("d-none");
   });
 
-  document.getElementById("loader1").style.display = "none";
 
   
   updateDashboard();
