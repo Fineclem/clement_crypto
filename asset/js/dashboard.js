@@ -382,11 +382,11 @@ setInterval(renderPortfolio, 60000);
         newsContainer.innerHTML += `
           <div class="col-12 col-sm-10 col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-              <img src="${article.urlToImage ? article.urlToImage : 'default.jpg'}" class="card-img-top object-fit-contain" alt="news-image">
+              <img src="${article.urlToImage ? article.urlToImage : 'default.jpg'}" class="img-fluid object-fit-contain" alt="news-image">
               <div class="card-body">
                 <h5 class="card-title">${article.title}</h5>
-                <p class="card-text">${article.description?.slice(0, 9)}...</p>
-                <a href="${article.url}" target="_blank" class="btn btn-sm btn-primary">Read More</a>
+                <p class="card-text">${article.description?.slice(0, 6)}...</p>
+                <a href="${article.url}" target="_blank" class="btn btn-sm btn-success">Read More</a>
               </div>
             </div>
           </div>
