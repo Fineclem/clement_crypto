@@ -1,5 +1,5 @@
 if(!localStorage.getItem("loggedInUser")){
-  window.location.href = "/index.html"; 
+  window.location.href = "public/index.html"; 
 };
 
 
@@ -16,40 +16,46 @@ if(!localStorage.getItem("loggedInUser")){
   
   
 // --- Market (CoinGecko API) ---
-async function fetchMarketData() {
-  let res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100&page=1");
-  let data = await res.json();
+function fetchMarketData() {
+  fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100&page=1")
+    .then(res => res.json())
+    .then(data => {
+      // Save to localStorage
+      localStorage.setItem("marketData", JSON.stringify(data));
 
-  
-  localStorage.setItem("marketData", JSON.stringify(data));
-
-  let list = document.getElementById("market-list");
-  list.innerHTML = "";
-
-  data.forEach(c => {
-    list.innerHTML += `
-      <div class="col-sm-6 col-md-4 col-lg-3 coin-card">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center">
-            <img src="${c.image}" width="40" class="mb-2">
-            <h6 class="coin-name">${c.name}</h6>
-            <h6 class="coin-name">${c.id}</h6>
-            <p class="coin-symbol text-muted">${c.symbol.toUpperCase()}</p>
-            <p>$${c.current_price.toLocaleString()}</p>
-            <p class="${c.price_change_percentage_24h >= 0 ? 'text-success' : 'text-danger'}">
+     
+      let list = document.getElementById("market-list");
+      list.innerHTML = "";
+           loader1.classList.remove("d-none");
+      data.forEach(c => {
+        list.innerHTML += `
+          <tr>
+            <td><img src="${c.image}" width="30"></td>
+            <td>${c.name}</td>
+           
+            <td class="text-muted">${c.symbol.toUpperCase()}</td>
+            <td>$${c.current_price.toLocaleString()}</td>
+            <td class="rounded-pill  ${c.price_change_percentage_24h >= 0 ? 'text-light bg-success' : 'text-light bg-danger'}">
               ${c.price_change_percentage_24h.toFixed(2)}%
-            </p>
-          </div>
-        </div>
-      </div>`;
+            </td>
+          </tr>
+        `;
+      });
+
       loader1.classList.add("d-none");
-  });
-
-
-  
-  updateDashboard();
+      updateDashboard();
+    })
+    .catch(error => {
+      console.error("Error fetching market data:", error);
+      // document.getElementById("market-list").innerHTML =
+      //   `<tr><td colspan="6" class="text-danger">Failed to load market data</td></tr>`;
+      loader1.classList.add("d-none");
+    });
 }
+
 fetchMarketData();
+
+
 
 // ================ Market Fetch End Here===========
 
@@ -188,9 +194,26 @@ function renderPortfolio() {
   fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}`)
     .then(res => res.json())
     .then(liveData => {
-      portfolioContainer.innerHTML = "";
       let totalValue = 0;
-      let totalPrevValue = 0; 
+      let totalPrevValue = 0;
+
+      // Start table
+      let tableHTML = `
+        <div class="table-responsive">
+          <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>Coin</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Value</th>
+                <th>24h Change</th>
+                <th>24h P/L</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
 
       portfolio.forEach((item, index) => {
         const liveCoin = liveData.find(c => c.id === item.id);
@@ -205,28 +228,38 @@ function renderPortfolio() {
         totalValue += parseFloat(totalCoinValue);
         totalPrevValue += parseFloat(totalCoinPrevValue);
 
-        portfolioContainer.innerHTML += `
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm">
-              <img src="${item.image}" class="card-img-top" height="150">
-              <div class="card-body">
-                <h5>${item.name} (${item.symbol.toUpperCase()})</h5>
-                <p>Amount: <strong>${item.amount}</strong></p>
-                <p>Value: <strong>$${totalCoinValue}</strong></p>
-                <p class="${change24hPerc >= 0 ? 'text-success' : 'text-danger'}">
-                  24h Change: ${change24hPerc.toFixed(2)}%
-                </p>
-                <p class="${coinPL >= 0 ? 'text-success' : 'text-danger'}">
-                  24h P/L: $${coinPL}
-                </p>
-                <button class="btn btn-sm btn-success me-2" onclick="sellFromPortfolio(${index})">Sell</button>
-                <button class="btn btn-sm btn-danger" onclick="removeFromPortfolio(${index})">Remove</button>
-              </div>
-            </div>
-          </div>`;
+        tableHTML += `
+          <tr>
+            <td>
+              <img src="${item.image}" alt="${item.name}" width="24" height="24" class="me-2">
+              ${item.name} (${item.symbol.toUpperCase()})
+            </td>
+            <td>${item.amount}</td>
+            <td>$${currentPrice.toFixed(2)}</td>
+            <td>$${totalCoinValue}</td>
+            <td class="${change24hPerc >= 0 ? 'text-success' : 'text-danger'}">
+              ${change24hPerc.toFixed(2)}%
+            </td>
+            <td class="${coinPL >= 0 ? 'text-success' : 'text-danger'}">
+              $${coinPL}
+            </td>
+            <td>
+              <button class="btn btn-sm btn-success me-1" onclick="sellFromPortfolio(${index})">Sell</button>
+              <button class="btn btn-sm btn-danger" onclick="removeFromPortfolio(${index})">Remove</button>
+            </td>
+          </tr>
+        `;
       });
 
-     
+      tableHTML += `
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      portfolioContainer.innerHTML = tableHTML;
+
+      // --- Update dashboard values ---
       document.getElementById("dash-portfolio-value").textContent = `$${totalValue.toFixed(2)}`;
       let totalChangePerc = 0;
       if (totalPrevValue > 0) {
@@ -234,11 +267,10 @@ function renderPortfolio() {
       }
       document.getElementById("dash-change").textContent = `${totalChangePerc.toFixed(2)}%`;
       document.getElementById("dash-change").className = `fw-bold ${totalChangePerc >= 0 ? 'text-success' : 'text-danger'}`;
-      
       document.getElementById("dash-watchlist").textContent = `${portfolio.length} Coins`;
     });
-
 }
+
 
 // --- Remove from portfolio ---
 function removeFromPortfolio(index) {
@@ -404,58 +436,80 @@ setInterval(renderPortfolio, 60000);
 
 
  // --- Sidebar Toggle for Mobile ---
-  const sidebarMenu = document.getElementById("sidebarMenu");
-  const sidebarToggle = document.getElementById("sidebarToggle");
-  const sidebarOverlay = document.getElementById("sidebarOverlay");
-  const navLinks = document.querySelectorAll(".sidebar .nav-link");
-  const sections = document.querySelectorAll("section");
+// --- Sidebar Toggle for Mobile ---
+const sidebarMenu = document.getElementById("sidebarMenu");
+const sidebarToggle = document.getElementById("sidebarToggle");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+const navLinks = document.querySelectorAll(".sidebar .nav-link");
+const sections = document.querySelectorAll("section");
 
-  sidebarToggle.addEventListener("click", () => {
-    sidebarMenu.classList.toggle("show");
-    sidebarOverlay.classList.toggle("show");
-  });
+// Toggle sidebar
+sidebarToggle.addEventListener("click", () => {
+  sidebarMenu.classList.toggle("show");
+  sidebarOverlay.classList.toggle("show");
+});
 
-  sidebarOverlay.addEventListener("click", () => {
+sidebarOverlay.addEventListener("click", () => {
+  sidebarMenu.classList.remove("show");
+  sidebarOverlay.classList.remove("show");
+});
+
+// --- Show Section Function ---
+function showSection(sectionId, push = true) {
+  // Hide all sections
+  sections.forEach(s => s.classList.remove("active"));
+
+  // Show chosen section
+  document.getElementById(sectionId).classList.add("active");
+
+  // Update nav active state
+  navLinks.forEach(l => l.classList.remove("active"));
+  document.querySelector(`.nav-link[data-section="${sectionId}"]`)?.classList.add("active");
+
+  // Save to localStorage
+  localStorage.setItem("currentSection", sectionId);
+
+  // Update URL
+  if (push) history.pushState({ section: sectionId }, "", `#${sectionId}`);
+
+  // Close sidebar on mobile
+  if (window.innerWidth <= 991) {
     sidebarMenu.classList.remove("show");
     sidebarOverlay.classList.remove("show");
+  }
+}
+
+// --- Navigation Switching ---
+navLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const sectionId = link.getAttribute("data-section");
+    showSection(sectionId);
   });
+});
 
-  // --- Navigation Switching ---
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      navLinks.forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
+// --- On Page Load ---
+window.addEventListener("DOMContentLoaded", () => {
+  const hash = window.location.hash.substring(1);
+  const saved = localStorage.getItem("currentSection");
 
-      const sectionId = link.getAttribute("data-section");
-      sections.forEach(s => s.classList.remove("active"));
-      document.getElementById(sectionId).classList.add("active");
-
-      localStorage.setItem("currentSection", sectionId)
-
-      
-      if (window.innerWidth <= 991) {
-        sidebarMenu.classList.remove("show");
-        sidebarOverlay.classList.remove("show");
-      }
-    });
-  });
-
-  window.addEventListener("DOMContentLoaded", () => {
-  const currentSection = localStorage.getItem("currentSection");
-
-  if (currentSection) {
-    sections.forEach(s => s.classList.remove("active"));
-    navLinks.forEach(l => l.classList.remove("active"));
-
- 
-    document.getElementById(currentSection).classList.add("active");
-    document.querySelector(`.nav-link[data-section="${currentSection}"]`).classList.add("active");
+  if (hash) {
+    showSection(hash, false);
+  } else if (saved) {
+    showSection(saved, false);
   } else {
-    
-    sections[0].classList.add("active");
-    navLinks[0].classList.add("active");
+    // Default: first section
+    const firstSection = sections[0].id;
+    showSection(firstSection, false);
   }
 });
+
+// --- Handle Back/Forward Buttons ---
+window.addEventListener("popstate", (e) => {
+  const sectionId = e.state?.section || window.location.hash.substring(1);
+  if (sectionId) showSection(sectionId, false);
+});
+
 
 
   // ---user Profile Handling ---
@@ -552,15 +606,16 @@ const marketSection = document.getElementById("market");
 
 // Function to filter coins
 function filterCoins(query) {
-  const cards = marketList.querySelectorAll(".coin-card");
-  cards.forEach(card => {
-    const name = card.querySelector(".coin-name").textContent.toLowerCase();
-    const symbol = card.querySelector(".coin-symbol").textContent.toLowerCase();
+  const rows = marketList.querySelectorAll("tr"); 
+  rows.forEach(row => {
+    const name = row.children[1]?.textContent.toLowerCase() || "";   
+    const id = row.children[2]?.textContent.toLowerCase() || "";     
+    const symbol = row.children[3]?.textContent.toLowerCase() || ""; 
 
-    if (name.includes(query) || symbol.includes(query)) {
-      card.style.display = "block";
+    if (name.includes(query) || symbol.includes(query) || id.includes(query)) {
+      row.style.display = "";
     } else {
-      card.style.display = "none";
+      row.style.display = "none";
     }
   });
 }
@@ -703,3 +758,123 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Elements
+const assetBalanceEl = document.getElementById("asset-balance");
+const depositCoin = document.getElementById("depositCoin");
+const depositAmount = document.getElementById("depositAmount");
+const depositBtn = document.getElementById("depositBtn");
+const depositDetails = document.getElementById("depositDetails");
+const depositAddress = document.getElementById("depositAddress");
+const depositQr = document.getElementById("depositQr");
+const copyAddressBtn = document.getElementById("copyAddressBtn");
+
+const withdrawCoin = document.getElementById("withdrawCoin");
+const withdrawAddress = document.getElementById("withdrawAddress");
+const withdrawAmount = document.getElementById("withdrawAmount");
+const withdrawBtn = document.getElementById("withdrawBtn");
+
+
+
+// Load balance
+function loadAssetBalance() {
+  const backendURL = "http://localhost:5000";
+
+  fetch(`${backendURL}/api/create-deposit`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ coins, amount }),
+})
+    .then((res) => res.json())
+    .then((data) => {
+      const bal = data.balance || 0;
+      assetBalanceEl.textContent = `$${bal.toFixed(2)}`;
+    })
+    .catch(() => (assetBalanceEl.textContent = "$0.00"));
+}
+
+
+// Load available coins for deposit
+
+
+// Deposit
+depositBtn.addEventListener("click", () => {
+  const coin = depositCoin.value;
+  const amount = parseFloat(depositAmount.value);
+  
+
+  if (!coin || isNaN(amount) || amount <= 0) {
+    Swal.fire("Invalid input", "Select coin and amount", "error");
+    return;
+  }
+     const backendURL = "http://localhost:5000";
+  fetch(`${backendURL}/api/create-deposit`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ coin, amount }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.pay_address) {
+        depositAddress.value = data.pay_address;
+        depositQr.src = data.qr_code || "";
+        depositDetails.style.display = "block";
+      } else {
+        Swal.fire("Failed", "Could not generate deposit address.", "error");
+      }
+    })
+    .catch(() =>
+      Swal.fire("Error", "Could not connect to backend.", "error")
+    );
+});
+
+// Copy address
+copyAddressBtn.addEventListener("click", () => {
+  navigator.clipboard.writeText(depositAddress.value);
+  Swal.fire("Copied!", "Address copied to clipboard", "success");
+});
+
+// Withdraw
+withdrawBtn.addEventListener("click", () => {
+  const coin = withdrawCoin.value;
+  const address = withdrawAddress.value.trim();
+  const amount = parseFloat(withdrawAmount.value);
+
+  if (!coin || !address || isNaN(amount) || amount <= 0) {
+    Swal.fire("Invalid input", "Please fill all fields", "error");
+    return;
+  }
+
+  Swal.fire({
+    icon: "info",
+    title: "Confirm Withdrawal",
+    html: `Withdraw <strong>${amount}$ worth of ${coin}</strong> to <code>${address}</code>?`,
+    showCancelButton: true,
+    confirmButtonText: "Yes, Withdraw",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const backendURL = "http://localhost:5000";
+      
+      fetch(`${backendURL}/api/withdraw`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ coin, address, amount }),
+      })
+        .then((res) => res.json())
+        .then((resp) => {
+          Swal.fire(
+            resp.success ? "Success" : "Error",
+            resp.message,
+            resp.success ? "success" : "error"
+          );
+          if (resp.success) loadAssetBalance();
+        })
+        .catch(() => Swal.fire("Failed", "Withdrawal failed", "error"));
+    }
+  });
+});
+
+loadAssetBalance();
+
+
+// Initial load
+loadAssetBalance();

@@ -121,7 +121,7 @@ localStorage.setItem("loggedInUser", JSON.stringify(data.user));
         showConfirmButton: false
       }).then(() => {
          loginLoader.classList.add("d-none");
-        window.location.href = "/pages/dashboard.html";
+        window.location.href = "dashboard.html";
       });
     })
     .catch(err => {
