@@ -13,15 +13,15 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 
-# IDE / Editor folders
+# Editor folders
 .vscode/
 .idea/
 
-# Build and cache folders (if any)
+# Build and cache folders 
 dist/
 build/
 .cache/
 
-# Temporary or personal files
+# Temporary files
 temp/
 test/

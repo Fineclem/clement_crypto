@@ -1,4 +1,4 @@
-// server.js
+
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
@@ -9,20 +9,20 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(express.static("public")); // serve dashboard frontend
+app.use(express.static("public")); 
 
-// ✅ Check API key
+
 console.log(
   "NOWPayments API Key Loaded:",
   process.env.NOWPAYMENTS_API_KEY ? "✅ Yes" : "❌ No"
 );
 
-// ✅ Test route
+
 app.get("/api", (req, res) => {
   res.json({ message: "CryptoX Backend Running ✅" });
 });
 
-// ✅ Test connection with NOWPayments
+
 app.get("/api/nowpayments", async (req, res) => {
   try {
     const response = await fetch("https://api.nowpayments.io/v1/status", {
@@ -36,7 +36,7 @@ app.get("/api/nowpayments", async (req, res) => {
   }
 });
 
-// ✅ Create Deposit Address
+
 app.post("/api/create-deposit", async (req, res) => {
   const { coin, amount } = req.body;
   try {
@@ -57,13 +57,13 @@ app.post("/api/create-deposit", async (req, res) => {
 
     const data = await response.json();
 
-    // ✅ Add a generated QR code link
+    
     if (data.payment_id && data.pay_address) {
       const qrCodeUrl = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${encodeURIComponent(
         data.pay_address
       )}`;
 
-      // ✅ Send QR code along with NOWPayments data
+      
       return res.json({
         ...data,
         qr_code: qrCodeUrl,
@@ -80,7 +80,7 @@ app.post("/api/create-deposit", async (req, res) => {
 
 
 
-// ✅ Simple mock balance and withdraw route (for testing)
+
 let balance = 0;
 
 app.get("/api/balance", (req, res) => {
@@ -96,7 +96,7 @@ app.post("/api/withdraw", (req, res) => {
   res.json({ success: true, message: "Withdrawal processed." });
 });
 
-// Start the server
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
   console.log(`🚀 Server running on http://localhost:${PORT}`)

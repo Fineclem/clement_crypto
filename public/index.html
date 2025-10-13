@@ -145,7 +145,7 @@
     <!-- Hero Section-->
     <section id="home" class="hero-section">
         <video class="hero-video" autoplay loop muted playsinline preload="auto">
-            <source src="/asset/video/7579667-uhd_2160_4096_25fps.mp4" type="video/mp4">
+            <source src="/public/asset/video/7579667-uhd_2160_4096_25fps.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -458,13 +458,14 @@
           <form  id="loginform">
             <input type="email" placeholder="Email" id="loginemail" name="email" class="form-control mb-2" >
                         <input type="password" placeholder="Password" id="loginpassword" name="password" class="form-control mb-2" >
-                        <button class="btn btn-success  form-control mt-2" type="submit">Login</button>
+                        <button id="submitBtn" class="btn btn-success  form-control mt-2" type="submit"> <span id="btnText">Login</span>
+                         <span id="spinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span></button>
                          <a data-bs-toggle="modal" data-bs-target="#modal3" href="#">Forgot password?</a>
                         <div class="text-center p-2">
                         <span class="text-light">Don't have an account?</span> 
                         <a class="text-warning"  href="#" data-bs-target="#modal1" data-bs-toggle="modal">Register</a>
                         </div>
-                        <div id="loginLoader" class="loader d-none"></div>
+                        <!-- <div id="loginLoader" class="loader d-none"></div> -->
 
           </form>
           <p id="emailResponse"></p>
@@ -489,7 +490,8 @@
   <input type="email" class="form-control mb-3" name="email" id="email1" placeholder="Email">
   <input type="password" class="form-control mb-3" name="password" id="password1" placeholder="Password">
   <input type="password" class="form-control mb-3" name="password" id="password2" placeholder="Confirm Password">
-  <button class="btn btn-success w-100" type="submit">Register</button>
+  <button class="btn btn-success w-100" id="registerBtn" type="submit"><span id="btnText1">Register</span>
+                         <span id="spinner1" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span></button>
  
   <div class="text-center">
     <span class="text-light">Already have an account?</span> 

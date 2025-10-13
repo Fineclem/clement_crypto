@@ -2,6 +2,9 @@
 const loginLoader = document.getElementById("loginLoader");
 const registerLoader = document.getElementById("registerLoader");
 const resetLoader = document.getElementById("resetLoader");
+const spinner1 = document.getElementById("spinner1");
+const btnText1 = document.getElementById("btnText1");
+const registerBtn = document.getAnimations("registerBtn");
 
 const form = document.getElementById('registerForm');
 
@@ -38,7 +41,10 @@ form.addEventListener("submit", (e) => {
     return;
   }
   
-   registerLoader.classList.remove("d-none");
+   spinner1.classList.remove("d-none");
+   btnText1.textContent = "Processing....."
+   registerBtn.disabled = true;
+
   
   const url = "https://testapi-touo.onrender.com/api/auth/register";
 
@@ -57,7 +63,8 @@ form.addEventListener("submit", (e) => {
         title: "Success",
         text: "✅ User registered successfully"
       });
-       registerLoader.classList.add("d-none");
+       spinner1.classList.add("d-none");
+       btnText1.textContent = "Register";
 
       form.reset();
 
@@ -74,7 +81,7 @@ form.addEventListener("submit", (e) => {
     .catch(err => {
       console.error("Registration error:", err);
       Swal.fire({ icon: "error", title: "Oops!", text: err.message });
-      registerLoader.classList.add("d-none");
+      spinner1.classList.add("d-none");
     });
 });
 
@@ -85,6 +92,10 @@ form.addEventListener("submit", (e) => {
 
 
 const loginForm = document.getElementById("loginform");
+const spinner = document.getElementById("spinner");
+const btnText = document.getElementById("btnText");
+const submitBtn = document.getElementById("submitBtn");
+
 
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -97,7 +108,9 @@ loginForm.addEventListener("submit", (e) => {
     Swal.fire({ icon: "error", text: "Both fields are required" });
     return;
   }
- loginLoader.classList.remove("d-none");
+ spinner.classList.remove("d-none");
+ btnText.textContent = "Logging in......."
+ submitBtn.disabled = true;
   
   fetch("https://testapi-touo.onrender.com/api/auth/login", {
     method: "POST",
@@ -120,13 +133,15 @@ localStorage.setItem("loggedInUser", JSON.stringify(data.user));
         timer: 1500,
         showConfirmButton: false
       }).then(() => {
-         loginLoader.classList.add("d-none");
+         spinner.classList.add("d-none");
+         btnText.textContent = "Login";
+         submitBtn.disabled = false;
         window.location.href = "dashboard.html";
       });
     })
     .catch(err => {
       Swal.fire({ icon: "error", title: "Login Failed", text: err.message });
-       loginLoader.classList.add("d-none");
+       spinner.classList.add("d-none");
     });
 });
 

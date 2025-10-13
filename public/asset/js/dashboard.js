@@ -20,7 +20,7 @@ function fetchMarketData() {
   fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=100&page=1")
     .then(res => res.json())
     .then(data => {
-      // Save to localStorage
+     
       localStorage.setItem("marketData", JSON.stringify(data));
 
      
@@ -413,8 +413,8 @@ setInterval(renderPortfolio, 60000);
       data.articles.forEach(article => {
         newsContainer.innerHTML += `
           <div class="col-12 col-sm-10 col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <img src="${article.urlToImage ? article.urlToImage : 'default.jpg'}" class="img-fluid object-fit-contain" alt="news-image">
+            <div class="card h-100 shadow-sm rounded-4 overflow-hidden">
+              <img src="${article.urlToImage ? article.urlToImage : 'default.jpg'}" class="img-fluid object-fit-contain" alt="news-image" height="90">
               <div class="card-body">
                 <h5 class="card-title">${article.title}</h5>
                 <p class="card-text">${article.description?.slice(0, 6)}...</p>
@@ -436,7 +436,7 @@ setInterval(renderPortfolio, 60000);
 
 
  // --- Sidebar Toggle for Mobile ---
-// --- Sidebar Toggle for Mobile ---
+
 const sidebarMenu = document.getElementById("sidebarMenu");
 const sidebarToggle = document.getElementById("sidebarToggle");
 const sidebarOverlay = document.getElementById("sidebarOverlay");
@@ -472,7 +472,7 @@ function showSection(sectionId, push = true) {
   // Update URL
   if (push) history.pushState({ section: sectionId }, "", `#${sectionId}`);
 
-  // Close sidebar on mobile
+  
   if (window.innerWidth <= 991) {
     sidebarMenu.classList.remove("show");
     sidebarOverlay.classList.remove("show");
@@ -552,7 +552,7 @@ logoutBtn.addEventListener("click", () => {
 
       
       setTimeout(() => {
-        window.location.href = "/index.html"; 
+        window.location.href = "index.html"; 
       }, 2000);
     }
   });
@@ -650,13 +650,13 @@ function updateDashboard() {
   // Market overview (top 5 coins)
   const dashboardMarket = document.getElementById("dashboard-market");
   dashboardMarket.innerHTML = marketData.slice(0, 5).map(coin => `
-    <tr>
-      <td><img src="${coin.image}" width="20"> ${coin.name} (${coin.symbol.toUpperCase()})</td>
-      <td>$${coin.current_price.toLocaleString()}</td>
-      <td class="${coin.price_change_percentage_24h >= 0 ? 'text-success' : 'text-danger'}">
+    <tr >
+      <td class="bg-light rounded"><img src="${coin.image}" width="20"> ${coin.name} (${coin.symbol.toUpperCase()})</td>
+      <td class="bg-primary-subtle rounded">$${coin.current_price.toLocaleString()}</td>
+      <td class="${coin.price_change_percentage_24h >= 0 ? 'text-success' : 'text-danger'} bg-light rounded">
         ${coin.price_change_percentage_24h.toFixed(2)}%
       </td>
-      <td>$${coin.market_cap.toLocaleString()}</td>
+      <td class="bg-danger-subtle rounded">$${coin.market_cap.toLocaleString()}</td>
     </tr>
   `).join("");
 
@@ -772,6 +772,9 @@ const withdrawCoin = document.getElementById("withdrawCoin");
 const withdrawAddress = document.getElementById("withdrawAddress");
 const withdrawAmount = document.getElementById("withdrawAmount");
 const withdrawBtn = document.getElementById("withdrawBtn");
+const spinner = document.getElementById("spinner");
+const btnText = document.getElementById("btnText");
+
 
 
 
@@ -806,6 +809,10 @@ depositBtn.addEventListener("click", () => {
     Swal.fire("Invalid input", "Select coin and amount", "error");
     return;
   }
+  spinner.classList.remove("d-none");
+  btnText.textContent = "Generating....."
+  depositBtn.disabled = true;
+
      const backendURL = "http://localhost:5000";
   fetch(`${backendURL}/api/create-deposit`, {
     method: "POST",
@@ -814,17 +821,30 @@ depositBtn.addEventListener("click", () => {
   })
     .then((res) => res.json())
     .then((data) => {
+             spinner.classList.add("d-none");
+  btnText.textContent = "Generate Deposit"
+  depositBtn.disabled = false;
       if (data.pay_address) {
         depositAddress.value = data.pay_address;
         depositQr.src = data.qr_code || "";
         depositDetails.style.display = "block";
       } else {
         Swal.fire("Failed", "Could not generate deposit address.", "error");
+         spinner.classList.add("d-none");
+  btnText.textContent = "Generate Deposit"
+  depositBtn.disabled = false;
       }
     })
-    .catch(() =>
-      Swal.fire("Error", "Could not connect to backend.", "error")
+    .catch(() => {
+       Swal.fire("Error", "Could not connect to backend.", "error");
+                spinner.classList.add("d-none");
+  btnText.textContent = "Generate Deposit"
+  depositBtn.disabled = false;
+    }
+     
+    
     );
+    
 });
 
 // Copy address

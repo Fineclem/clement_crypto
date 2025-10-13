@@ -61,7 +61,7 @@
    <!-- Content -->
 <div class="content w-100">
  
-  <nav class="navbar navbar-light bg-light mb-3 ">
+  <nav class="navbar navbar-light bg-dark rounded-4 mb-3 ">
     <div class="container-fluid">
       <button class="btn btn-outline-dark d-lg-none" type="button" id="sidebarToggle">
         <i class="bi bi-list"></i>
@@ -125,22 +125,22 @@
   </div>
 
   <!-- Market Overview -->
- <div class="card web3-card shadow-lg border-0 mb-4">
+ <div class="card web3-card shadow-lg border-0 mb-4 bg-dark">
   <div class="card-header web3-header">
-    <h5 class="mb-0"> Market Overview</h5>
+    <h5 class="mb-0">Top 5 coins</h5>
   </div>
-  <div class="card-body table-responsive">
-    <table class="table web3-table align-middle mb-0">
+  <div class="card-body table-responsive ">
+    <table class="table web3-table align-middle mb-2 ">
       <thead>
-        <tr>
-          <th>Coin</th>
-          <th>Price</th>
-          <th>24h Change</th>
-          <th>Market Cap</th>
+        <tr >
+          <th  class="rounded-1 bg-primary-subtle">Coin</th>
+          <th class="rounded-1 bg-primary-subtle">Price</th>
+          <th class="rounded-1 bg-primary-subtle">24h Change</th>
+          <th class="rounded-1 bg-primary-subtle">Market Cap</th>
         </tr>
       </thead>
-      <tbody id="dashboard-market">
-        <!-- dynamic data goes here -->
+      <tbody id="dashboard-market" >
+       
       </tbody>
     </table>
   </div>
@@ -238,10 +238,10 @@
 
   <ul class="nav nav-tabs mb-3" id="assetTabs">
     <li class="nav-item">
-      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-deposit">Deposit</button>
+      <button class="nav-link active border border-2 border-primary text-dark" data-bs-toggle="tab" data-bs-target="#tab-deposit">Deposit</button>
     </li>
     <li class="nav-item">
-      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-withdraw">Withdraw</button>
+      <button class="nav-link border border-2 border-success mx-2" data-bs-toggle="tab" data-bs-target="#tab-withdraw">Withdraw</button>
     </li>
   </ul>
 
@@ -275,7 +275,8 @@
           </div>
         </div>
 
-        <button id="depositBtn" class="btn btn-primary mt-3">Generate Deposit</button>
+        <button id="depositBtn" class="btn btn-primary mt-3"><span id="btnText">Generate Deposit</span>
+                         <span id="spinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span></button>
       </div>
     </div>
 
