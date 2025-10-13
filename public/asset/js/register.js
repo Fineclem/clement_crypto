@@ -65,6 +65,7 @@ form.addEventListener("submit", (e) => {
       });
        spinner1.classList.add("d-none");
        btnText1.textContent = "Register";
+       registerBtn.disabled = false;
 
       form.reset();
 
@@ -82,6 +83,8 @@ form.addEventListener("submit", (e) => {
       console.error("Registration error:", err);
       Swal.fire({ icon: "error", title: "Oops!", text: err.message });
       spinner1.classList.add("d-none");
+      btnText1.textContent = "Register";
+       registerBtn.disabled = false;
     });
 });
 
@@ -142,6 +145,8 @@ localStorage.setItem("loggedInUser", JSON.stringify(data.user));
     .catch(err => {
       Swal.fire({ icon: "error", title: "Login Failed", text: err.message });
        spinner.classList.add("d-none");
+       btnText.textContent = "Login"
+       submitBtn.disabled = false;
     });
 });
 
