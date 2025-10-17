@@ -112,7 +112,7 @@ loginForm.addEventListener("submit", (e) => {
     return;
   }
  spinner.classList.remove("d-none");
- btnText.textContent = "Logging in......."
+ btnText.textContent = "Logging in.......";
  submitBtn.disabled = true;
   
   fetch("https://testapi-touo.onrender.com/api/auth/login", {
